@@ -33,7 +33,7 @@ public class Trainer{
     public Integer getSalary(){
         return this.salary;
     }
-    public void setSalary(Intger salary){
+    public void setSalary(Integer salary){
         this.salary = salary;
     }
     public String getSpecialization(){
@@ -43,7 +43,7 @@ public class Trainer{
         this.specialization = specialization;
     }
     public Integer getTrainerId(){
-        return this.specialization;
+        return this.trainerId;
     }
     public void setTrainerId(Integer trainerId){
         this.trainerId = trainerId;

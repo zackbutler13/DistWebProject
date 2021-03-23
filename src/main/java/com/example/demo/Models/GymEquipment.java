@@ -55,4 +55,22 @@ public class GymEquipment{
     public void setVendor(String vendor){
         this.vendor = vendor;
     }
+    public String getDescription(){
+        return this.description;
+    }
+    public void setDescription(String description){
+        this.description = description;
+    }
+    public Integer getGymId(){
+        return this.gymId;
+    }
+    public void setGymId(Integer gymId){
+        this.gymId= gymId;
+    }
+    public Integer getGymEquipmentId(){
+        return this.gymEquipmentId;
+    }
+    public void setGymEquipmentId(Integer gymEquipmentId){
+        this.gymEquipmentId = gymEquipmentId;
+    }
 }
