@@ -1,0 +1,39 @@
+package com.example.demo.Services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import com.example.demo.Models.Gym;
+import com.example.demo.Repositories.GymRepository;
+
+// retrieves and adds to database
+
+@Service
+public class GymService{
+
+    @Autowired
+    private GymRepository gymRepository;
+
+    public List<Gym> getAll(){
+        return (List<Gym>) gymRepository.findAll();
+    }
+
+    public void addNew(Gym gym){
+        gymRepository.save(gym);
+    }
+
+    public void update(Gym gym){
+        gymRepository.save(gym);
+    }
+
+    public Optional<Gym> getOne(Integer gymId){
+        return gymRepository.findById(gymId);
+    }
+    public void delete(Integer gymId){
+        gymRepository.deleteById(gymId);
+    }
+}
