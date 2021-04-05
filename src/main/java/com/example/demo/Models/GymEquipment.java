@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class GymEquipment{
     String equipmentName;
-    Date purchaseDate;
+    String purchaseDate;
     double purchasePrice;
     String vendor;
     String description;
@@ -21,7 +21,7 @@ public class GymEquipment{
     public GymEquipment(){
         super();
     }
-    public GymEquipment(String equipmentName, Date purchaseDate, double purchasePrice, String vendor, String description, Integer gymId, Integer gymEquipmentId){
+    public GymEquipment(String equipmentName, String purchaseDate, double purchasePrice, String vendor, String description, Integer gymId, Integer gymEquipmentId){
         super();
         this.equipmentName = equipmentName;
         this.purchaseDate = purchaseDate;
@@ -37,10 +37,10 @@ public class GymEquipment{
     public void setEquipmentName(String equipmentName){
         this.equipmentName = equipmentName;
     }
-    public Date getPurchaseDate(){
+    public String getPurchaseDate(){
         return this.purchaseDate;
     }
-    public void setPurchaseDate(Date purchaseDate){
+    public void setPurchaseDate(String purchaseDate){
         this.purchaseDate = purchaseDate;
     }
     public double getPurchasePrice(){

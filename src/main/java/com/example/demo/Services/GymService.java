@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.example.demo.Models.Gym;
-import com.example.demo.Repositories.GymRepository;
+import com.example.demo.Repositories.*;
 
 // retrieves and adds to database
 

@@ -11,17 +11,19 @@ public class Trainer{
     String name;
     Integer salary;
     String specialization;
+    Integer gymId;
     @Id
     Integer trainerId;
 
     public Trainer(){
         super();
     }
-    public Trainer(String name, Integer salary, String specialization, Integer trainerId){
+    public Trainer(String name, Integer salary, String specialization, Integer gymId, Integer trainerId){
         super();
         this.name = name;
         this.salary = salary;
         this.specialization = specialization;
+        this.gymId = gymId;
         this.trainerId = trainerId;
     }
     public String getName(){
@@ -41,6 +43,12 @@ public class Trainer{
     }
     public void setSpecialization(String specialization){
         this.specialization = specialization;
+    }
+    public Integer getGymId(){
+        return this.gymId;
+    }
+    public void setGymId(Integer gymId){
+        this.gymId = gymId;
     }
     public Integer getTrainerId(){
         return this.trainerId;

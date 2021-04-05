@@ -9,16 +9,17 @@ import javax.persistence.Id;
 @Entity
 public class Schedule{
     String name;
-    Date date;
+    String date;
     Integer price;
     Integer difficulty;
     Integer trainerId;
+    @Id
     Integer gymId;
 
     public Schedule(){
         super();
     }
-    public Schedule(String name, Date date, Integer price, Integer difficulty, Integer trainerId, Integer gymId){
+    public Schedule(String name, String date, Integer price, Integer difficulty, Integer trainerId, Integer gymId){
         super();
         this.name = name;
         this.date = date;
@@ -32,6 +33,12 @@ public class Schedule{
     }
     public void setName(String name){
         this.name = name;
+    }
+    public String getDate(){
+        return this.date;
+    }
+    public void setDate(String date){
+        this.date = date;
     }
     public Integer getPrice(){
         return this.price;

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class User{
     String name;
-    Date dateJoined;
+    String dateJoined;
     Integer membershipStatus;
     Integer gymId;
     Integer trainerId;
@@ -19,7 +19,7 @@ public class User{
     public User(){
         super();
     }
-    public User(String name, Date dateJoined, Integer membershipStatus, Integer gymId, Integer trainerId, Integer userId){
+    public User(String name, String dateJoined, Integer membershipStatus, Integer gymId, Integer trainerId, Integer userId){
         super();
         this.name = name;
         this.dateJoined = dateJoined;
@@ -34,10 +34,10 @@ public class User{
     public void setName(String name){
         this.name = name;
     }
-    public Date getDateJoined(){
+    public String getDateJoined(){
         return this.dateJoined;
     }
-    public void setDateJoined(Date dateJoined){
+    public void setDateJoined(String dateJoined){
         this.dateJoined = dateJoined;
     }
     public Integer getMembershipStatus(){
