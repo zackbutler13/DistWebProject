@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="header :: header"></head>
+<head>
+<title>Search for Books</title>
+</head>
+
+<body>
+
+	<!-- (Source code only read): adds the navagation menu bar -->
+	<div th:replace="topnav ::  navbar">	</div>
+
+
+<h2 style="text-align: center;">User Search</h2>
+
+<div style="width=60%; margin: auto auto;">
+	<form action="#" th:action="@{/usersearch/search}" method="GET">
+		<div class="form-group row" style="max-width: 100%;  margin: auto auto 0.75rem auto; padding-right: 10px; padding-left: 10px;">
+		
+			<select name="selectedField" class="form-control form-control" style="max-width: 15%; margin: auto auto;">
+				<option value="userId" th:selected="${selected[0]}"> user ID</option>
+				<option value="dateJoined" th:selected="${selected[1]}">date joined</option>
+				<option value="gymId" th:selected="${selected[2]}">gymId</option>
+				<option value="membershipStatus" th:selected="${selected[3]}">Membership Status</option>
+				<option value="name" th:selected="${selected[4]}">name</option>
+                <option value="trainerId" th:selected="${selected[5]}">trainer ID</option>
+			</select>
+		
+		
+			<input type="text" name="searchTerm" th:value="${searchTerm}" class="form-control" placeholder="Key word" style="max-width: 60%; margin: auto auto;">
+		
+			<button type="submit" class="btn btn-dark" style="margin: auto auto;">Search</button>
+		</div>
+	</form>
+</div>
+
+<font color="red"><h1 th:text="${error_msg}" style="text-align: center;"></h1></font>
+
+<div style="padding-top: 40px;">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">dateJoined</th>
+				<th scope="col">gymId</th>
+                <th scope="col">membershipStatus</th>
+				<th scope="col">name</th>
+				<th scope="col">trainerId</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- acts like a for each loop and iterates through all the users -->
+			<tr th:each="user:${users}">
+				<td th:text="${user.userId}"></td>
+				<td th:text="${user.dateJoined}"></td>
+                <td th:text="${user.gymId}"></td>
+				<td th:text="${user.membershipStatus}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.trainerId}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

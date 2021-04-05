@@ -38,10 +38,10 @@ public class UserSearchController{
         boolean selected[] = new boolean[6];
 
         if(selectedField.equals("id")){selected[0] = true;}
-        if(selectedField.equals("name")){selected[1] = true;}
-        if(selectedField.equals("dateJoined")){selected[2] = true;}
+        if(selectedField.equals("dateJoined")){selected[1] = true;}
+        if(selectedField.equals("gymId")){selected[2] = true;}
         if(selectedField.equals("membershipStatus")){selected[3]=true;}
-        if(selectedField.equals("gymId")){selected[4] = true;}
+        if(selectedField.equals("name")){selected[4] = true;}
         if(selectedField.equals("trainerId")){selected[5] = true;}
 
         model.addAttribute("selected", selected);
@@ -57,17 +57,17 @@ public class UserSearchController{
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/gymDatabase", "root", "student");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym", "root", "Zachary1");
             Statement s = cn.createStatement();
 
             String select = "select * from user where ";
 
-            if(selectedField.equals("id")){select += "id like '%" + searchTerm + "%';";}
+            if(selectedField.equals("id")){select += "user_id like '%" + searchTerm + "%';";}
             if(selectedField.equals("name")){select += "name like '%" + searchTerm + "%';";}
-            if(selectedField.equals("dateJoined")){select += "dateJoined like '%" + searchTerm + "%';";}
-            if(selectedField.equals("membershipStatus")){select += "membershipStatus like '%" + searchTerm + "%';";}
-            if(selectedField.equals("gymId")){select += "gymId like '%" + searchTerm + "%';";}
-            if(selectedField.equals("trainerId")){select += "trainerId like '%" + searchTerm + "%';";}
+            if(selectedField.equals("dateJoined")){select += "date_joined like '%" + searchTerm + "%';";}
+            if(selectedField.equals("membershipStatus")){select += "membership_status like '%" + searchTerm + "%';";}
+            if(selectedField.equals("gymId")){select += "gym_id like '%" + searchTerm + "%';";}
+            if(selectedField.equals("trainerId")){select += "trainer_id like '%" + searchTerm + "%';";}
 
             ResultSet rs = s.executeQuery(select);
             List<User> users = new ArrayList<User>();
@@ -75,10 +75,10 @@ public class UserSearchController{
             while(rs.next()){
                 User user = new User();
                 user.setUserId(Integer.parseInt(rs.getString(1)));
-                user.setName(rs.getString(2));
-                user.setDateJoined(rs.getString(3));
+                user.setDateJoined(rs.getString(2));
+                user.setGymId(Integer.parseInt(rs.getString(3)));
                 user.setMembershipStatus(Integer.parseInt(rs.getString(4)));
-                user.setGymId(Integer.parseInt(rs.getString(5)));
+                user.setName(rs.getString(5));
                 user.setTrainerId(Integer.parseInt(rs.getString(6)));
 
                 users.add(user);

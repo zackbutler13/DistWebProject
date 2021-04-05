@@ -1,0 +1,46 @@
+<html>
+    <head th:replace="fragments/header :: header"> </head>
+
+<head>
+<script type="text/javascript" src="../static/user.js" th:src="@{/user.js}"></script>
+</head>
+<body>
+	<!-- (Source code only read): adds the navagation menu bar -->
+	<div th:replace="topnav ::  navbar">	</div>
+
+	<h2 style="text-align: center;">List of users</h2>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
+    <body>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Gym Id</th>
+                        <th scope="col">Membership Status</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Trainer Id</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- acts like a for each loop and iterates through all the books -->
+                    <tr th:each="user:${users}">
+                        <td th:text="${user.userId}"></td>
+                        <td th:text="${user.dateJoined}"></td>
+                        <td th:text="${user.membershipStatus}"></td>
+                        <td th:text="${user.gymId}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.trainerId}"></td>
+                        <td><a th:href="@{/user/getOne/(userId=${user.userId})}" class="btn btn-warning" id="editButton">Edit</a></td>
+                        <td><a th:href="@{/user/delete/(userId=${user.userId})}" class="btn btn-danger" id="deleteButton">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>
