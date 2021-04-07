@@ -6,12 +6,12 @@ $('document').ready(function() {
 		var href= $(this).attr('href');
 		
 		$.get(href, function(user, status){
-			$('#nameEdit').val(user.name);
-			$('#dateJoinedEdit').val(user.dateJoined);
-			$('#membershipStatusEdit').val(user.membershipStatus);
-			$('#gymIdEdit').val(user.gymId);
-			$('#trainerIdEdit').val(user.trainerId);
 			$('#userIdEdit').val(user.userId);
+			$('#dateJoinedEdit').val(user.dateJoined);
+			$('#gymIdEdit').val(user.gymId);
+			$('#membershipStatusEdit').val(user.membershipStatus);
+			$('#nameEdit').val(user.name);
+			$('#trainerIdEdit').val(user.trainerId);			
 		});
 		
 		$('#editModal').modal();

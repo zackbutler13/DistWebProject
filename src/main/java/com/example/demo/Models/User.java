@@ -19,14 +19,15 @@ public class User{
     public User(){
         super();
     }
-    public User(String name, String dateJoined, Integer membershipStatus, Integer gymId, Integer trainerId, Integer userId){
+    public User(Integer userId, String dateJoined, Integer gymId, Integer membershipStatus,  String name, Integer trainerId){
         super();
-        this.name = name;
-        this.dateJoined = dateJoined;
-        this.membershipStatus = membershipStatus;
-        this.gymId = gymId;
-        this.trainerId = trainerId;
         this.userId = userId;
+        this.dateJoined = dateJoined;
+        this.gymId = gymId;
+        this.membershipStatus = membershipStatus;
+        this.name = name;
+        this.trainerId = trainerId;
+        
     }
     public String getName(){
         return this.name;

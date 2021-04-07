@@ -36,7 +36,7 @@ public class GymController {
 
             model.addAttribute("newID", maxId +1);
             model.addAttribute("gyms", gyms);
-            return "gyms";
+            return "gym";
         }
         @PostMapping("/addNew")
         public String addNew(Gym gym){

@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,10 @@ public class UserService{
     private UserRepository userRepository;
 
     public List<User> getAll(){
-        return (List<User>) userRepository.findAll();
+        List<User> users = new ArrayList<User>();
+        users.addAll((List<User>)userRepository.findAll());
+
+        return users;
     }
 
     public void addNew(User user){
