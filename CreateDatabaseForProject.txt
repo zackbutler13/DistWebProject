@@ -1,0 +1,36 @@
+create table user(userId int primary key,
+					name varchar(50) not null,
+					dateJoined varchar(30),
+                    membershipStatus int,
+                    gymId int,
+                    trainerId int,
+                    foreign key(trainerId) references trainer(trainerId),
+                    foreign key(gymId) references gym(gymId));
+create table gym(gymId int primary key,
+				name varchar(50) not null,
+                membershipCost int not null,
+                location varchar(40) not null);
+create table gymEquipment(gymEquipmentId int primary key,
+						equipmentName varchar(50) not null,
+                        purchaseDate varchar(30),
+                        purchasePrice float not null,
+                        vendor varchar(30),
+                        description varchar(60),
+                        gymId int not null,
+                        foreign key(gymId) references gym(gymId));
+create table schedule(gymId int,
+					 name varchar(40) not null,
+                     date varchar(30) not null,
+                     price int not null,
+                     difficulty int, 
+                     trainerId int not null,
+                     foreign key(gymId) references gym(gymId),
+                     foreign key(trainerId) references trainer(trainerId));
+create table trainer(trainerId int primary key,
+					name varchar(60) not null,
+                    salary int,
+                    specialization varchar(40),
+                    gymId int,
+                    foreign key(gymId) references gym(gymId));
+create table login(userName varchar(30) primary key,
+					password varchar(30));
