@@ -62,7 +62,7 @@ public class UserSearchController{
 
             String select = "select * from user where ";
 
-            if(selectedField.equals("id")){select += "user_id like '%" + searchTerm + "%';";}
+            if(selectedField.equals("userId")){select += "user_id like '%" + searchTerm + "%';";}
             if(selectedField.equals("name")){select += "name like '%" + searchTerm + "%';";}
             if(selectedField.equals("dateJoined")){select += "date_joined like '%" + searchTerm + "%';";}
             if(selectedField.equals("membershipStatus")){select += "membership_status like '%" + searchTerm + "%';";}
