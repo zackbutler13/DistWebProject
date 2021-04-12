@@ -11,13 +11,12 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Gym Equimpent Id</th>
-                        <th scope="col">Equipment Name</th>
-                        <th scope="col">Purchase Date</th>
-                        <th scope="col">Purchase Price</th>
-                        <th scope="col">Vendor</th>
-                        <th scope="col">Description</th>
                         <th scope="col">Gym Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Trainer Id</th>
                        <!-- <th scope="col">Edit</th>
                         <th scope="col">Delete</th>-->
                         
@@ -25,14 +24,13 @@
                 </thead>
                 <tbody>
                     <!-- acts like a for each loop and iterates through all the books -->
-                    <tr th:each="gymequipment:${gymEquipments}">
-                        <td th:text="${gymequipment.gymEquipmentId}"></td>
-                        <td th:text="${gymequipment.equipmentName}"></td>
-                        <td th:text="${gymequipment.purchaseDate}"></td>
-                        <td th:text="${gymequipment.purchasePrice}"></td>
-                        <td th:text="${gymequipment.vendor}"></td>
-                        <td th:text="${gymequipment.description}"></td>
-                        <td th:text="${gymequipment.gymId}"></td>
+                    <tr th:each="schedule:${schedules}">
+                        <td th:text="${schedule.gymId}"></td>
+                        <td th:text="${schedule.name}"></td>
+                        <td th:text="${schedule.date}"></td>
+                        <td th:text="${schedule.price}"></td>
+                        <td th:text="${schedule.difficulty}"></td>
+                        <td th:text="${schedule.trainerId}"></td>
                        <!-- <td><a th:href="@{/user/getOne/(userId=${user.userId})}" class="btn btn-warning" id="editButton">Edit</a></td>
                         <td><a th:href="@{/user/delete/(userId=${user.userId})}" class="btn btn-danger" id="deleteButton">Delete</a></td>-->
                     </tr>

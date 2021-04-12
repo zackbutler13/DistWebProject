@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +30,7 @@ public class GymEquipmentController{
 
             for(int i =0; i< gymEquipments.size(); i++){
                 if(maxId < gymEquipments.get(i).getGymEquipmentId()){
-                    maxId = gymEquipments.get(i).getGymId();
+                    maxId = gymEquipments.get(i).getGymEquipmentId();
                 }
             }
 
