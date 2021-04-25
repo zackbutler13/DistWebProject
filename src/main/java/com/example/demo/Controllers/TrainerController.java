@@ -20,7 +20,8 @@ public class TrainerController {
     private TrainerService trainerService;
 
 
-        @RequestMapping("/getAllTrainers")
+    //gets all trainers    
+    @RequestMapping("/getAllTrainers")
         public String getAll(Model model){
             List<Trainer> trainers = trainerService.getAll();
 
@@ -36,23 +37,28 @@ public class TrainerController {
             model.addAttribute("trainers", trainers);
             return "trainer";
         }
+
+        //adds new trainer
         @PostMapping("/addNew")
         public String addNew(Trainer trainer){
             trainerService.addNew(trainer);
             return "redirect:/trainers/getAllTrainers";
         }
 
+        //update/edit trainer
         @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
         public String update(Trainer trainer){
             trainerService.update(trainer);
             return "redirect:/trainers/getAllTrainers";
         }
 
+        //get one trainer using trainer id
         @RequestMapping("/getOne")
         public Optional<Trainer> getOne(Integer trainerId){
             return trainerService.getOne(trainerId);
         }
 
+        //delete trainer using trainer id
         @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
         public String delete(Integer trainerId){
             trainerService.delete(trainerId);

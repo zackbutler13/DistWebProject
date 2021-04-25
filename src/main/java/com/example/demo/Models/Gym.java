@@ -4,6 +4,7 @@ package com.example.demo.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//Create model of Gym, with getters an setters
 
 @Entity
 public class Gym{
@@ -16,7 +17,7 @@ public class Gym{
     public Gym(){
         super();
     }
-    public Gym(String name, Integer membershipCost, String location, Integer gymId){
+    public Gym(Integer gymId, String location,  Integer membershipCost, String name ){
         this.name = name;
         this.membershipCost = membershipCost;
         this.location = location;

@@ -22,6 +22,7 @@ public class GymController {
         private GymService gymService;
 
 
+        //Gets all gyms from database
         @RequestMapping("/getAllGyms")
         public String getAll(Model model){
             List<Gym> gyms = gymService.getAll();
@@ -38,23 +39,28 @@ public class GymController {
             model.addAttribute("gyms", gyms);
             return "gym";
         }
+
+        //adds new gym to database
         @PostMapping("/addNew")
         public String addNew(Gym gym){
             gymService.addNew(gym);
             return "redirect:/gyms/getAllGyms";
         }
 
+        //updates/edits gym
         @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
         public String update(Gym gym){
             gymService.update(gym);
             return "redirect:/gyms/getAllGyms";
         }
 
+        //Gets gym from database based on the gym id
         @RequestMapping("/getOne")
         public Optional<Gym> getOne(Integer gymId){
             return gymService.getOne(gymId);
         }
 
+        //deletes gym from database using gym ids
         @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
         public String delete(Integer gymId){
             gymService.delete(gymId);

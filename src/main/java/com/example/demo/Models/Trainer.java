@@ -1,10 +1,8 @@
 package com.example.demo.Models;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//Create model of trainer with getters and setters
 
 @Entity
 public class Trainer{

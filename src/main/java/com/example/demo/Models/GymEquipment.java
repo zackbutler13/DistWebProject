@@ -5,6 +5,7 @@ package com.example.demo.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//Create model of gym equipment with getters and setters
 
 @Entity
 public class GymEquipment{

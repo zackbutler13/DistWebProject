@@ -22,6 +22,7 @@ public class GymEquipmentController{
     private GymEquipmentService gymEquipmentService;
 
 
+        //Gets all gym equipment from database
         @RequestMapping("/getAllEquipment")
         public String getAll(Model model){
             List<GymEquipment> gymEquipments = gymEquipmentService.getAll();
@@ -38,23 +39,27 @@ public class GymEquipmentController{
             model.addAttribute("gymEquipments", gymEquipments);
             return "gymequipment";
         }
+        //Add new gym equipment 
         @PostMapping("/addNew")
         public String addNew(GymEquipment gymEquipment){
             gymEquipmentService.addNew(gymEquipment);
             return "redirect:/gymequipment/getAllEquipment";
         }
 
+        //edit/update gym equipment
         @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
         public String update(GymEquipment gymEquipment){
             gymEquipmentService.update(gymEquipment);
             return "redirect:/gymequipment/getAllEquipment";
         }
 
+        //obtain gym equipment using the id
         @RequestMapping("/getOne")
         public Optional<GymEquipment> getOne(Integer gymEquipmentId){
             return gymEquipmentService.getOne(gymEquipmentId);
         }
 
+        //delete gym equipment using the id
         @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
         public String delete(Integer gymEquipmentId){
             gymEquipmentService.delete(gymEquipmentId);

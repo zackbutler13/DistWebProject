@@ -24,6 +24,7 @@ public class GymSearchController{
     @Autowired
     GymService gymService;
 
+    //gets gym search before anything has been selected
     @RequestMapping("/gymsearch")
     public String blank(Model model){
         boolean selected[] = new boolean[4];
@@ -32,10 +33,12 @@ public class GymSearchController{
         return "gymsearch";
     }
 
+    //fetches data once a keyword is selected 
     @RequestMapping(value="/gymsearch/search", method=RequestMethod.GET)
     public String form(Model model, @RequestParam(value="selectedField", required=true) String selectedField, @RequestParam(value="searchTerm", required=false, defaultValue="") String searchTerm){
         boolean selected[] = new boolean[4];
 
+        //checks which keyword has been selected
         if(selectedField.equals("id")){selected[0] = true;}
         if(selectedField.equals("location")){selected[1] = true;}
         if(selectedField.equals("membershipCost")){selected[2] = true;}
@@ -44,6 +47,7 @@ public class GymSearchController{
         model.addAttribute("selected",selected);
         model.addAttribute("searchTerm",searchTerm);
 
+        //if no search term then select all gyms
         if(searchTerm.equals("")){
             List<Gym> gym = gymService.getAll();
             model.addAttribute("gym", gym);
@@ -53,20 +57,24 @@ public class GymSearchController{
         }
 
         try{
+            //connect to database and create statement
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym", "root", "Zachary1");
             Statement s = cn.createStatement();
 
             String select = "select * from gym where ";
 
+            //check keyword and add to query statement
             if(selectedField.equals("gymId")){select += "gym_id like '%" + searchTerm + "%';";}
             if(selectedField.equals("location")){select += "location like '%" + searchTerm + "%';";}
             if(selectedField.equals("membershipCost")){select += "membership_cost like '%" + searchTerm + "%';";}
             if(selectedField.equals("name")){select += "name like '%" + searchTerm + "%';";}
 
+            //execute query and receive back results 
             ResultSet rs = s.executeQuery(select);
             List<Gym> gyms = new ArrayList<Gym>();
 
+            //cycle through the result set and add the gym to arraylist
             while(rs.next()){
                 Gym gym = new Gym();
                 gym.setGymId(Integer.parseInt(rs.getString(1)));
@@ -76,6 +84,7 @@ public class GymSearchController{
 
                 gyms.add(gym);
             }
+            //add gyms to model
             model.addAttribute("gyms", gyms);
             model.addAttribute("error_msg","");
         }catch(Exception e){

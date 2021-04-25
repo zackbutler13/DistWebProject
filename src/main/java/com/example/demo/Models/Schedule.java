@@ -1,10 +1,8 @@
 package com.example.demo.Models;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//create model for schedule with getters and setters
 
 @Entity
 public class Schedule{

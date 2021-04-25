@@ -4,8 +4,54 @@
 	<!-- (Source code only read): adds the navagation menu bar -->
 	<div th:replace="topnav ::  navbar">	</div>
 
-	<h2 style="text-align: center;">List of Gym Equipment</h2>
+	<h2 style="text-align: center;">List of Schedules</h2>
+  <!--Add new Schedules-->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- th:action lets the website interact with java -->
+    <form th:action="@{/schedule/addNew}" method="post">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Schedules</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <div class="form-group">
+              <label for="recipient-name" class="col-form-label"> Gym Id:</label>
+              <input type="text" class="form-control" id="gymId" name="gymId" >
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Date:</label>
+              <input type="text" class="form-control" id="date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Price:</label>
+              <input type="text" class="form-control" id="price" name="price">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Difficulty:</label>
+              <input type="text" class="form-control" id="difficulty" name="difficulty">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Trainer Id:</label>
+                <input type="text" class="form-control" id="trainerId" name="trainerId">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Schedule</button>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
 
         <div>
             <table class="table">
@@ -17,13 +63,11 @@
                         <th scope="col">Price</th>
                         <th scope="col">Difficulty</th>
                         <th scope="col">Trainer Id</th>
-                       <!-- <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>-->
-                        
+                                                
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- acts like a for each loop and iterates through all the books -->
+                    <!-- acts like a for each loop and iterates through all the Schedules -->
                     <tr th:each="schedule:${schedules}">
                         <td th:text="${schedule.gymId}"></td>
                         <td th:text="${schedule.name}"></td>
@@ -31,8 +75,7 @@
                         <td th:text="${schedule.price}"></td>
                         <td th:text="${schedule.difficulty}"></td>
                         <td th:text="${schedule.trainerId}"></td>
-                       <!-- <td><a th:href="@{/user/getOne/(userId=${user.userId})}" class="btn btn-warning" id="editButton">Edit</a></td>
-                        <td><a th:href="@{/user/delete/(userId=${user.userId})}" class="btn btn-danger" id="deleteButton">Delete</a></td>-->
+                        <td><a th:href="@{/schedule/delete/(gymId=${schedule.gymId})}" class="btn btn-danger" id="deleteButton">Delete</a></td>
                     </tr>
                 </tbody>
             </table>

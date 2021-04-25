@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //get all users
     @RequestMapping("/getAllUsers")
     public String getAll(Model model){
         List<User> users = userService.getAll();
@@ -36,22 +37,28 @@ public class UserController {
         model.addAttribute("users", users);
         return "user";
     }
+
+    //add new user 
     @PostMapping("/addNew")
     public String addNew(User user){
         userService.update(user);
         return "redirect:/user/getAllUsers";
     }
+
+    //edit/update new user
     @RequestMapping(value="/update", method= {RequestMethod.PUT, RequestMethod.GET})
     public String update(User user){
         userService.update(user);
         return "redirect:/user/getAllUsers";
     }
 
+    //get user from user id
     @RequestMapping("/getOne")
     public Optional<User> getOne(Integer userId){
         return userService.getOne(userId);
     }
 
+    //delete user from user id
     @RequestMapping(value="/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer userId){
         userService.delete(userId);

@@ -6,10 +6,10 @@ $('document').ready(function() {
 		var href= $(this).attr('href');
 		
 		$.get(href, function(gym, status){
-			$('#nameEdit').val(gym.name);
-			$('#membershipCostEdit').val(gym.membershipCost);
-			$('#locationEdit').val(gym.location);
 			$('#gymIdEdit').val(gym.gymId);
+			$('#locationEdit').val(gym.location);
+			$('#membershipCostEdit').val(gym.membershipCost);
+			$('#nameEdit').val(gym.name);
 		});
 		
 		$('#editModal').modal();

@@ -21,6 +21,7 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
 
+    //get all schedules
     @RequestMapping("/getAllSchedules")
     public String getAll(Model model){
         List<Schedule> schedules = scheduleService.getAll();
@@ -37,23 +38,28 @@ public class ScheduleController {
         model.addAttribute("schedules", schedules);
         return "schedule";
     }
+
+    //add new schedule
     @PostMapping("/addNew")
     public String addNew(Schedule schedule){
         scheduleService.addNew(schedule);
         return "redirect:/schedule/getAllSchedules";
     }
 
+    //edit/update schedule
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Schedule schedule){
         scheduleService.update(schedule);
         return "redirect:/schedule/getAllSchedules";
     }
 
+    //get one schedule based off Id
     @RequestMapping("/getOne")
     public Optional<Schedule> getOne(Integer gymId){
         return scheduleService.getOne(gymId);
     }
 
+    //delete schedule using id
     @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer gymId){
         scheduleService.delete(gymId);

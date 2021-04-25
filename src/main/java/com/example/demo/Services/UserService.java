@@ -16,6 +16,7 @@ public class UserService{
     @Autowired
     private UserRepository userRepository;
 
+    //get all users
     public List<User> getAll(){
         List<User> users = new ArrayList<User>();
         users.addAll((List<User>)userRepository.findAll());
@@ -23,18 +24,22 @@ public class UserService{
         return users;
     }
 
+    //add new user
     public void addNew(User user){
         userRepository.save(user);
     }
 
+    //update user
     public void update(User user){
         userRepository.save(user);
     }
 
+    //retrieves user by user id
     public Optional<User> getOne(Integer userId){
         return userRepository.findById(userId);
     }
 
+    //delete user by user id
     public void delete(Integer userId){
         userRepository.deleteById(userId);
     }

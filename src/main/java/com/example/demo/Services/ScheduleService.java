@@ -15,22 +15,27 @@ public class ScheduleService{
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    //gets all schedules
     public List<Schedule> getAll(){
         return (List<Schedule>) scheduleRepository.findAll();
     }
 
+    //adds new schedule
     public void addNew(Schedule schedule){
         scheduleRepository.save(schedule);
     }
 
+    //updates schedule
     public void update(Schedule schedule){
         scheduleRepository.save(schedule);
     }
 
+    //get schedule by schedule id
     public Optional<Schedule> getOne(Integer scheduleId){
         return scheduleRepository.findById(scheduleId);
     }
 
+    //deletes schedule by id
     public void delete(Integer scheduleId){
         scheduleRepository.deleteById(scheduleId);
     }

@@ -25,6 +25,7 @@ public class UserSearchController{
     @Autowired
     UserService userService;
 
+    //route to blank user search page
     @RequestMapping("/usersearch")
     public String blank(Model model){
         boolean selected[] = new boolean[6];
@@ -33,10 +34,12 @@ public class UserSearchController{
         return "usersearch";
     }
 
+    //return user search with results
     @RequestMapping(value= "/usersearch/search", method=RequestMethod.GET)
     public String form(Model model,@RequestParam(value="selectedField", required=true) String selectedField, @RequestParam(value="searchTerm", required=false, defaultValue="") String searchTerm ){
         boolean selected[] = new boolean[6];
 
+        //check which keyword was selected
         if(selectedField.equals("id")){selected[0] = true;}
         if(selectedField.equals("dateJoined")){selected[1] = true;}
         if(selectedField.equals("gymId")){selected[2] = true;}
@@ -47,6 +50,7 @@ public class UserSearchController{
         model.addAttribute("selected", selected);
         model.addAttribute("searchTerm", searchTerm);
 
+        //return all users if nothing is entered into the search term
         if(searchTerm.equals("")){
             List<User> user = userService.getAll();
             model.addAttribute("user", user);
@@ -56,10 +60,12 @@ public class UserSearchController{
         }
 
         try{
+            //connect to database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym", "root", "Zachary1");
             Statement s = cn.createStatement();
 
+            //create query to find the user based off the search term
             String select = "select * from user where ";
 
             if(selectedField.equals("userId")){select += "user_id like '%" + searchTerm + "%';";}
@@ -68,10 +74,12 @@ public class UserSearchController{
             if(selectedField.equals("membershipStatus")){select += "membership_status like '%" + searchTerm + "%';";}
             if(selectedField.equals("gymId")){select += "gym_id like '%" + searchTerm + "%';";}
             if(selectedField.equals("trainerId")){select += "trainer_id like '%" + searchTerm + "%';";}
-
+        
+            //execute query and get results
             ResultSet rs = s.executeQuery(select);
             List<User> users = new ArrayList<User>();
 
+            //search through result set and obtain user
             while(rs.next()){
                 User user = new User();
                 user.setUserId(Integer.parseInt(rs.getString(1)));
@@ -81,6 +89,7 @@ public class UserSearchController{
                 user.setName(rs.getString(5));
                 user.setTrainerId(Integer.parseInt(rs.getString(6)));
 
+                //add user to arraylist
                 users.add(user);
             }
             model.addAttribute("users", users);

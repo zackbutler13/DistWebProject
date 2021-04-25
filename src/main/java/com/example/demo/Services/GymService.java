@@ -18,21 +18,27 @@ public class GymService{
     @Autowired
     private GymRepository gymRepository;
 
+    //gets all gyms
     public List<Gym> getAll(){
         return (List<Gym>) gymRepository.findAll();
     }
 
+    //adds new gym
     public void addNew(Gym gym){
         gymRepository.save(gym);
     }
 
+    //updates gym 
     public void update(Gym gym){
         gymRepository.save(gym);
     }
 
+    //retrieves gym by gym id
     public Optional<Gym> getOne(Integer gymId){
         return gymRepository.findById(gymId);
     }
+    
+    //delete gym by gym id
     public void delete(Integer gymId){
         gymRepository.deleteById(gymId);
     }
